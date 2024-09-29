@@ -1,38 +1,187 @@
-.App {
-  text-align: center;
+/* Estilos generales */
+
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 10px;
+  height: 100vh;
+  padding: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.menu button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.menu button:hover {
+  background-color: #0056b3;
+}
+
+.main {
+  display: flex;
+  gap: 30px;  /* Aumentamos el espacio entre las secciones */
+  height: 100%;
+}
+
+.editor, .console {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+}
+
+.editor h2, .console h2 {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+}
+
+textarea {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+  resize: none;
+  font-family: monospace;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+/* Spinner de carga */
+.lds-dual-ring {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 4px solid #007bff;
+  border-color: #007bff transparent #007bff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Estilos adicionales para mensajes de error y spinner */
+.spinner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100%;
+  color: #007bff;
+  font-size: 18px;
 }
 
-.App-link {
-  color: #61dafb;
+.error-message {
+  color: red;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Estilos consistentes para los títulos */
+.editor h2, .console h2 {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  font-size: 24px; /* Ajustamos el tamaño del texto */
+  color: #333;
+  font-weight: bold;
+}
+
+/* Media Queries para pantallas más pequeñas */
+
+/* Para pantallas menores a 1024px */
+@media (max-width: 1024px) {
+  .menu {
+    gap: 15px;  /* Reducimos el espacio entre los botones */
   }
-  to {
-    transform: rotate(360deg);
+
+  .main {
+    gap: 20px;  /* Reducimos el espacio entre las secciones */
+  }
+
+  .editor h2, .console h2 {
+    font-size: 20px;  /* Reducimos ligeramente el tamaño de los títulos */
+  }
+}
+
+/* Para pantallas menores a 768px (tablets o dispositivos medianos) */
+@media (max-width: 768px) {
+  .menu {
+    flex-wrap: wrap;  /* Los botones de menú se acomodarán en varias filas si no caben */
+    justify-content: center;  /* Centramos los botones en pantallas más pequeñas */
+  }
+
+  .main {
+    flex-direction: column;  /* Cambiamos de diseño horizontal a vertical */
+    gap: 20px;
+  }
+
+  .editor, .console {
+    height: 40vh;  /* Ajustamos la altura de cada sección */
+  }
+
+  .editor h2, .console h2 {
+    font-size: 18px;  /* Ajustamos más el tamaño de los títulos */
+  }
+}
+
+/* Para pantallas menores a 480px (smartphones) */
+@media (max-width: 480px) {
+  .menu button {
+    padding: 8px 15px;  /* Hacemos los botones más compactos */
+    font-size: 14px;
+  }
+
+  .editor, .console {
+    height: auto;  /* Permite que la altura sea automática en pantallas pequeñas */
+    padding: 10px;  /* Reducimos el padding interno */
+  }
+
+  .editor h2, .console h2 {
+    font-size: 16px;  /* Ajustamos los títulos a un tamaño más pequeño */
+  }
+
+  textarea {
+    font-size: 14px;  /* Reducimos el tamaño del texto del editor */
   }
 }
